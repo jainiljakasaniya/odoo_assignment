@@ -1,0 +1,342 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Booking</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script>
+        let selected_room = parseInt(`{{selected_room}}`)
+
+        window.onload = () => {
+            localStorage.setItem("auth_token", `{{token}}`)
+            let room1 = document.getElementById('room1')
+            let room2 = document.getElementById('room2')
+            let room3 = document.getElementById('room3')
+            let room4 = document.getElementById('room4')
+
+            room1.onclick = () => {
+                for (var i = 0; i < calendars.length; i++) {
+                    console.log(calendars[i])
+                    if (calendars[i].textContent.trim() === `{{ day }}`) {
+                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    }
+                }
+                document.getElementById('slots').style.display = 'none'
+                selected_room = 0
+                document.getElementById('room-schedule').style.display = 'block'
+                console.log('{{rooms.0.tag_id}}')
+                document.getElementById('room-detail-name').innerText = '{{rooms.0.name}}'
+                document.getElementById('room-detail-tag').innerText = '{{rooms.0.tag_id}}'
+                document.getElementById('room-detail-capacity').innerText = '{{rooms.0.capacity}} seat capacity'
+            }
+
+            room2.onclick = () => {
+                for (var i = 0; i < calendars.length; i++) {
+                    console.log(calendars[i])
+                    if (calendars[i].textContent.trim() === `{{ day }}`) {
+                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    }
+                }
+                document.getElementById('slots').style.display = 'none'
+                selected_room = 1
+                document.getElementById('room-schedule').style.display = 'block'
+                console.log('{{rooms.0.tag_id}}')
+                document.getElementById('room-detail-name').innerText = '{{rooms.1.name}}'
+                document.getElementById('room-detail-tag').innerText = '{{rooms.1.tag_id}}'
+                document.getElementById('room-detail-capacity').innerText = '{{rooms.1.capacity}} seat capacity'
+            }
+
+            room3.onclick = () => {
+                for (var i = 0; i < calendars.length; i++) {
+                    console.log(calendars[i])
+                    if (calendars[i].textContent.trim() === `{{ day }}`) {
+                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    }
+                }
+                document.getElementById('slots').style.display = 'none'
+                selected_room = 2
+                document.getElementById('room-schedule').style.display = 'block'
+                console.log('{{rooms.0.tag_id}}')
+                document.getElementById('room-detail-name').innerText = '{{rooms.2.name}}'
+                document.getElementById('room-detail-tag').innerText = '{{rooms.2.tag_id}}'
+                document.getElementById('room-detail-capacity').innerText = '{{rooms.2.capacity}} seat capacity'
+            }
+
+            room4.onclick = () => {
+                for (var i = 0; i < calendars.length; i++) {
+                    console.log(calendars[i])
+                    if (calendars[i].textContent.trim() === `{{ day }}`) {
+                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    }
+                }
+                document.getElementById('slots').style.display = 'none'
+                selected_room = 3
+                document.getElementById('room-schedule').style.display = 'block'
+                console.log('{{rooms.0.tag_id}}')
+                document.getElementById('room-detail-name').innerText = '{{rooms.3.name}}'
+                document.getElementById('room-detail-tag').innerText = '{{rooms.3.tag_id}}'
+                document.getElementById('room-detail-capacity').innerText = '{{rooms.3.capacity}} seat capacity'
+            }
+
+            var calendars = document.getElementsByClassName('calendar');
+
+            for (var i = 0; i < calendars.length; i++) {
+                console.log(calendars[i])
+                if (calendars[i].textContent.trim() === `{{ day }}`) {
+                    calendars[i].style.backgroundColor = '#714b67';
+                }
+            }
+        }
+
+        function search() {
+            console.log(document.getElementById("filter").value)
+            return '/search/' + document.getElementById("filter").value + '/{{token}}'
+        }
+
+        function date_book(day) {
+            window.location = '/day_select/' + day + '/' + selected_room + '/{{token}}';
+        }
+
+        function booking(time) {
+            console.log("jainil")
+            window.location = '/room-page/' + `{{ day }}` + '/' + selected_room + '/' + time + '/{{token}}';
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Room Booking</h1>
+    <div class="search-bar">
+        <input type="text" id="filter" placeholder="Search">
+        <a href="javascript:window.location=search();"><button>Search</button></a>
+    </div>
+    <div class="container">
+        <div class="room-list">
+            {% for room in rooms %}
+            <div class="room" id="room{{room.id}}">
+                <div class="room-info">
+                    <h2>{{room.name}}</h2>
+                    <!-- <p>Currently available</p> -->
+                </div>
+                <div class="room-capacity">
+                    <div class="room-capacity-info">
+                        <span>{{room.tag_id}}</span>
+                        <!-- <span>Projector</span>
+                        <button onclick="">Sound</button> -->
+                    </div>
+                    <div class="room-capacity-num">
+                        <p>{{room.capacity}} seat capacity</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- <div class="room">
+                <div class="room-info">
+                    <h2>Room2</h2>
+                    <p>Available after 30 min</p>
+                </div>
+                <div class="room-capacity">
+                    <div class="room-capacity-info">
+                        <button onclick="">Projector</button>
+                        <button onclick="">Sound</button>
+                    </div>
+                    <div class="room-capacity-num">
+                        <p>500 seat capacity</p>
+                    </div>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-info">
+                    <h2>Room3</h2>
+                    <p>Currently available</p>
+                </div>
+                <div class="room-capacity">
+                    <div class="room-capacity">
+                        <div class="room-capacity-info">
+                            <button onclick="">Projector</button>
+                            <button onclick="">Sound</button>
+                        </div>
+                        <div class="room-capacity-num">
+                            <p>1000 seat capacity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-info">
+                    <h2>Room4</h2>
+                    <p>Available tomorrow</p>
+                </div>
+                <div class="room-capacity">
+                    <div class="room-capacity">
+                        <div class="room-capacity-info">
+                            <button onclick="">Projector</button>
+                            <button onclick="">Sound</button>
+                        </div>
+                        <div class="room-capacity-num">
+                            <p>60 seat capacity</p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        {% if selected_room == -1 %}
+        <div class="room-schedule" id="room-schedule" style="display: none;">
+            {% else %}
+            <div class="room-schedule" id="room-schedule">
+                {% endif %}
+
+                {% if selected_room == -1 %}
+                <h2 id="room-detail-name"></h2>
+                {% else %}
+                {% with rooms|get_item:selected_room as selected_room_obj %}
+                <h2 id="room-detail-name">{{ selected_room_obj.name }}</h2>
+                {% endwith %}
+                {% endif %}
+                <div class="first-half">
+                    <div class="schedule-calendar">
+                        <div class="calendar-days">
+                            <span>S</span>
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+                        </div>
+                        <div class="calendar-dates">
+                            <button onclick="date_book(1)" class="calendar">1</button>
+                            <button onclick="date_book(2)" class="calendar">2</button>
+                            <button onclick="date_book(3)" class="calendar">3</button>
+                            <button onclick="date_book(4)" class="calendar">4</button>
+                            <button onclick="date_book(5)" class="calendar">5</button>
+                            <button onclick="date_book(6)" class="calendar">6</button>
+                            <button onclick="date_book(7)" class="calendar">7</button>
+                            <button onclick="date_book(8)" class="calendar">8</button>
+                            <button onclick="date_book(9)" class="calendar">9</button>
+                            <button onclick="date_book(10)" class="calendar">10</button>
+                            <button onclick="date_book(11)" class="calendar">11</button>
+                            <button onclick="date_book(12)" class="calendar">12</button>
+                            <button onclick="date_book(13)" class="calendar">13</button>
+                            <button onclick="date_book(14)" class="calendar">14</button>
+                            <button onclick="date_book(15)" class="calendar">15</button>
+                            <button onclick="date_book(16)" class="calendar">16</button>
+                            <button onclick="date_book(17)" class="calendar">17</button>
+                            <button onclick="date_book(18)" class="calendar">18</button>
+                            <button onclick="date_book(19)" class="calendar">19</button>
+                            <button onclick="date_book(20)" class="calendar">20</button>
+                            <button onclick="date_book(21)" class="calendar">21</button>
+                            <button onclick="date_book(22)" class="calendar">22</button>
+                            <button onclick="date_book(23)" class="calendar">23</button>
+                            <button onclick="date_book(24)" class="calendar">24</button>
+                            <button onclick="date_book(25)" class="calendar">25</button>
+                            <button onclick="date_book(26)" class="calendar">26</button>
+                            <button onclick="date_book(27)" class="calendar">27</button>
+                            <button onclick="date_book(28)" class="calendar">28</button>
+                            <button onclick="date_book(29)" class="calendar">29</button>
+                            <button onclick="date_book(30)" class="calendar">30</button>
+                            <button onclick="date_book(31)" class="calendar">31</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-header">
+                        <div class="schedule-capacity">
+                            <div class="schedule-one">
+                                {% if selected_room == -1 %}
+                                <span id="room-detail-tag"></span>
+                                {% else %}
+                                {% with rooms|get_item:selected_room as selected_room_obj %}
+                                <span id="room-detail-tag">{{ selected_room_obj.tag_id }}</span>
+                                {% endwith %}
+                                {% endif %}
+
+                            </div>
+                            <div class="schedule-two">
+                                {% if selected_room == -1 %}
+                                <p id="room-detail-capacity"></p>
+                                {% else %}
+                                {% with rooms|get_item:selected_room as selected_room_obj %}
+                                <p id="room-detail-capacity">{{ selected_room_obj.capacity }} seat capacity</p>
+                                {% endwith %}
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="book">
+                            <button onclick="">Book</button>
+                        </div>
+                    </div>
+
+                </div>
+                {% if bookings == '' %}
+                <div class="schedule-times" id="slots" style="display: none;"></div>
+                {% else %}
+                <div class="schedule-times" id="slots">
+                    <div class="schedule-times">
+                        <button
+                            style="background-color: {% if '10:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('10:00')">10:00 - 10:30</button>
+                        <button
+                            style="background-color: {% if '10:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('10:30')">10:30 - 11:00</button>
+                        <button
+                            style="background-color: {% if '11:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('11:00')">11:00 - 11:30</button>
+                        <button
+                            style="background-color: {% if '11:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('11:30')">11:30 - 12:00</button>
+                        <button
+                            style="background-color: {% if '12:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('12:00')">12:00 - 12:30</button>
+                        <button
+                            style="background-color: {% if '12:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('12:30')">12:30 - 1:00</button>
+                        <button
+                            style="background-color: {% if '01:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('1:00')">1:00 - 1:30</button>
+                        <button
+                            style="background-color: {% if '01:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('1:30')">1:30 - 2:00</button>
+                        <button
+                            style="background-color: {% if '02:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('2:00')">2:00 - 2:30</button>
+                        <button
+                            style="background-color: {% if '02:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('2:30')">2:30 - 3:00</button>
+                        <button
+                            style="background-color: {% if '03:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('3:00')">3:00 - 3:30</button>
+                        <button
+                            style="background-color: {% if '03:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('3:30')">3:30 - 4:00</button>
+                        <button
+                            style="background-color: {% if '04:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('4:00')">4:00 - 4:30</button>
+                        <button
+                            style="background-color: {% if '04:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('4:30')">4:30 - 5:00</button>
+                        <button
+                            style="background-color: {% if '05:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('5:00')">5:00 - 5:30</button>
+                        <button
+                            style="background-color: {% if '05:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('5:30')">5:30 - 6:00</button>
+                        <button
+                            style="background-color: {% if '06:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('6:00')">6:00 - 6:30</button>
+                        <button
+                            style="background-color: {% if '06:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
+                            onclick="booking('6:30')">6:30 - 7:00</button>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+</body>
+
+</html>
