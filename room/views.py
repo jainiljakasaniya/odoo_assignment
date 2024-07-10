@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Sessions, Rooms, Tags, Booking
+from django.db.models import Q
 from datetime import datetime, timedelta, timezone
 import jwt
 
@@ -56,11 +57,11 @@ def room_page(request, date, selected_room, slot_start, token):
         booking.start_time = slot_start
         booking.end_time = slot_end
         room=Rooms.objects.get(id=int(selected_room)+1)
-        print(token_obj, type(token_obj['id']))
+        # print(token_obj, type(token_obj['id']))
         session=Sessions.objects.get(id=token_obj['id'])
         booking.session_id = session
         booking.room_id = room
-        print(booking)
+        # print(booking)
         booking.save()
         rooms = Rooms.objects.all()
         bookings = Booking.objects.all()
@@ -71,7 +72,7 @@ def room_page(request, date, selected_room, slot_start, token):
 
 def search_booking(request, filter, token):
     if is_valid(token):
-        rooms = Rooms.objects.filter(name__icontains=filter).all()
+        rooms = Rooms.objects.filter(Q(name__icontains=filter) | Q(tag_id__name__icontains=filter)).all()
         bookings = []
         for room in rooms:
             booking_indi = Booking.objects.filter(room_id=room.id).all()
@@ -91,9 +92,9 @@ def day_select(request,day,selected_room,token):
         bookings = Booking.objects.filter(room_id=int(selected_room)+1,date=day)
         # print(bookings[])
         bookings_list = [booking.start_time for booking in bookings]
-        print(bookings_list)
+        # print(bookings_list)
         context = {"rooms": rooms, "bookings": bookings_list, "token": token,"selected_room":int(selected_room),"day":day}
-        print(context)
+        # print(context)
         return render(request, "index.html", context=context)
     else:
         return render(request, "login.html")
