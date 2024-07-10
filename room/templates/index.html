@@ -20,77 +20,77 @@
 
             if (room1 != null) {
                 room1.onclick = () => {
-                for (var i = 0; i < calendars.length; i++) {
-                    // console.log(calendars[i])
-                    if (calendars[i].textContent.trim() === `{{ day }}`) {
-                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    for (var i = 0; i < calendars.length; i++) {
+                        // console.log(calendars[i])
+                        if (calendars[i].textContent.trim() === `{{ day }}`) {
+                            calendars[i].style.backgroundColor = '#8f8f8f';
+                        }
                     }
+                    document.getElementById('slots').style.display = 'none'
+                    selected_room = 0
+                    document.getElementById('room-schedule').style.display = 'block'
+                    // console.log('{{rooms.0.tag_id}}')
+                    document.getElementById('room-detail-name').innerText = '{{rooms.0.name}}'
+                    document.getElementById('room-detail-tag').innerText = '{{rooms.0.tag_id}}'
+                    document.getElementById('room-detail-capacity').innerText = '{{rooms.0.capacity}} seat capacity'
                 }
-                document.getElementById('slots').style.display = 'none'
-                selected_room = 0
-                document.getElementById('room-schedule').style.display = 'block'
-                // console.log('{{rooms.0.tag_id}}')
-                document.getElementById('room-detail-name').innerText = '{{rooms.0.name}}'
-                document.getElementById('room-detail-tag').innerText = '{{rooms.0.tag_id}}'
-                document.getElementById('room-detail-capacity').innerText = '{{rooms.0.capacity}} seat capacity'
-            }
             }
 
 
-            if (room2!= null) {
+            if (room2 != null) {
                 room2.onclick = () => {
-                for (var i = 0; i < calendars.length; i++) {
-                    // console.log(calendars[i])
-                    if (calendars[i].textContent.trim() === `{{ day }}`) {
-                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    for (var i = 0; i < calendars.length; i++) {
+                        // console.log(calendars[i])
+                        if (calendars[i].textContent.trim() === `{{ day }}`) {
+                            calendars[i].style.backgroundColor = '#8f8f8f';
+                        }
                     }
+                    document.getElementById('slots').style.display = 'none'
+                    selected_room = 1
+                    document.getElementById('room-schedule').style.display = 'block'
+                    // console.log('{{rooms.0.tag_id}}')
+                    document.getElementById('room-detail-name').innerText = '{{rooms.1.name}}'
+                    document.getElementById('room-detail-tag').innerText = '{{rooms.1.tag_id}}'
+                    document.getElementById('room-detail-capacity').innerText = '{{rooms.1.capacity}} seat capacity'
                 }
-                document.getElementById('slots').style.display = 'none'
-                selected_room = 1
-                document.getElementById('room-schedule').style.display = 'block'
-                // console.log('{{rooms.0.tag_id}}')
-                document.getElementById('room-detail-name').innerText = '{{rooms.1.name}}'
-                document.getElementById('room-detail-tag').innerText = '{{rooms.1.tag_id}}'
-                document.getElementById('room-detail-capacity').innerText = '{{rooms.1.capacity}} seat capacity'
-            }
             }
 
 
-            if (room3!= null) {
+            if (room3 != null) {
                 room3.onclick = () => {
-                for (var i = 0; i < calendars.length; i++) {
-                    // console.log(calendars[i])
-                    if (calendars[i].textContent.trim() === `{{ day }}`) {
-                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    for (var i = 0; i < calendars.length; i++) {
+                        // console.log(calendars[i])
+                        if (calendars[i].textContent.trim() === `{{ day }}`) {
+                            calendars[i].style.backgroundColor = '#8f8f8f';
+                        }
                     }
+                    document.getElementById('slots').style.display = 'none'
+                    selected_room = 2
+                    document.getElementById('room-schedule').style.display = 'block'
+                    // console.log('{{rooms.0.tag_id}}')
+                    document.getElementById('room-detail-name').innerText = '{{rooms.2.name}}'
+                    document.getElementById('room-detail-tag').innerText = '{{rooms.2.tag_id}}'
+                    document.getElementById('room-detail-capacity').innerText = '{{rooms.2.capacity}} seat capacity'
                 }
-                document.getElementById('slots').style.display = 'none'
-                selected_room = 2
-                document.getElementById('room-schedule').style.display = 'block'
-                // console.log('{{rooms.0.tag_id}}')
-                document.getElementById('room-detail-name').innerText = '{{rooms.2.name}}'
-                document.getElementById('room-detail-tag').innerText = '{{rooms.2.tag_id}}'
-                document.getElementById('room-detail-capacity').innerText = '{{rooms.2.capacity}} seat capacity'
-            }
             }
 
 
-            if (room4!=null) {
+            if (room4 != null) {
                 room4.onclick = () => {
-                for (var i = 0; i < calendars.length; i++) {
-                    // console.log(calendars[i])
-                    if (calendars[i].textContent.trim() === `{{ day }}`) {
-                        calendars[i].style.backgroundColor = '#8f8f8f';
+                    for (var i = 0; i < calendars.length; i++) {
+                        // console.log(calendars[i])
+                        if (calendars[i].textContent.trim() === `{{ day }}`) {
+                            calendars[i].style.backgroundColor = '#8f8f8f';
+                        }
                     }
+                    document.getElementById('slots').style.display = 'none'
+                    selected_room = 3
+                    document.getElementById('room-schedule').style.display = 'block'
+                    // console.log('{{rooms.0.tag_id}}')
+                    document.getElementById('room-detail-name').innerText = '{{rooms.3.name}}'
+                    document.getElementById('room-detail-tag').innerText = '{{rooms.3.tag_id}}'
+                    document.getElementById('room-detail-capacity').innerText = '{{rooms.3.capacity}} seat capacity'
                 }
-                document.getElementById('slots').style.display = 'none'
-                selected_room = 3
-                document.getElementById('room-schedule').style.display = 'block'
-                // console.log('{{rooms.0.tag_id}}')
-                document.getElementById('room-detail-name').innerText = '{{rooms.3.name}}'
-                document.getElementById('room-detail-tag').innerText = '{{rooms.3.tag_id}}'
-                document.getElementById('room-detail-capacity').innerText = '{{rooms.3.capacity}} seat capacity'
-            }
             }
 
             var calendars = document.getElementsByClassName('calendar');
@@ -295,58 +295,58 @@
                     <div class="schedule-times">
                         <button
                             style="background-color: {% if '10:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('10:00')">10:00 - 10:30</button>
+                            onclick="booking('10:00')" {% if '10:00' in bookings %}disabled {% endif %}>10:00 - 10:30</button>
                         <button
                             style="background-color: {% if '10:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('10:30')">10:30 - 11:00</button>
+                            onclick="booking('10:30')" {% if '10:30' in bookings %}disabled {% endif %}>10:30 - 11:00</button>
                         <button
                             style="background-color: {% if '11:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('11:00')">11:00 - 11:30</button>
+                            onclick="booking('11:00')" {% if '11:00' in bookings %}disabled {% endif %}>11:00 - 11:30</button>
                         <button
                             style="background-color: {% if '11:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('11:30')">11:30 - 12:00</button>
+                            onclick="booking('11:30')" {% if '11:30' in bookings %}disabled {% endif %}>11:30 - 12:00</button>
                         <button
                             style="background-color: {% if '12:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('12:00')">12:00 - 12:30</button>
+                            onclick="booking('12:00')" {% if '12:00' in bookings %}disabled {% endif %}>12:00 - 12:30</button>
                         <button
                             style="background-color: {% if '12:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('12:30')">12:30 - 1:00</button>
+                            onclick="booking('12:30')" {% if '12:30' in bookings %}disabled {% endif %}>12:30 - 1:00</button>
                         <button
                             style="background-color: {% if '1:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('1:00')">1:00 - 1:30</button>
+                            onclick="booking('1:00')" {% if '1:00' in bookings %}disabled {% endif %}>1:00 - 1:30</button>
                         <button
                             style="background-color: {% if '1:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('1:30')">1:30 - 2:00</button>
+                            onclick="booking('1:30')" {% if '1:30' in bookings %}disabled {% endif %}>1:30 - 2:00</button>
                         <button
                             style="background-color: {% if '2:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('2:00')">2:00 - 2:30</button>
+                            onclick="booking('2:00')" {% if '2:00' in bookings %}disabled {% endif %}>2:00 - 2:30</button>
                         <button
                             style="background-color: {% if '2:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('2:30')">2:30 - 3:00</button>
+                            onclick="booking('2:30')" {% if '2:30' in bookings %}disabled {% endif %}>2:30 - 3:00</button>
                         <button
                             style="background-color: {% if '3:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('3:00')">3:00 - 3:30</button>
+                            onclick="booking('3:00')" {% if '3:00' in bookings %}disabled {% endif %}>3:00 - 3:30</button>
                         <button
                             style="background-color: {% if '3:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('3:30')">3:30 - 4:00</button>
+                            onclick="booking('3:30')" {% if '3:30' in bookings %}disabled {% endif %}>3:30 - 4:00</button>
                         <button
                             style="background-color: {% if '4:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('4:00')">4:00 - 4:30</button>
+                            onclick="booking('4:00')" {% if '4:00' in bookings %}disabled {% endif %}>4:00 - 4:30</button>
                         <button
                             style="background-color: {% if '4:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('4:30')">4:30 - 5:00</button>
+                            onclick="booking('4:30')" {% if '4:30' in bookings %}disabled {% endif %}>4:30 - 5:00</button>
                         <button
                             style="background-color: {% if '5:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('5:00')">5:00 - 5:30</button>
+                            onclick="booking('5:00')" {% if '5:00' in bookings %}disabled {% endif %}>5:00 - 5:30</button>
                         <button
                             style="background-color: {% if '5:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('5:30')">5:30 - 6:00</button>
+                            onclick="booking('5:30')" {% if '5:30' in bookings %}disabled {% endif %}>5:30 - 6:00</button>
                         <button
                             style="background-color: {% if '6:00' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('6:00')">6:00 - 6:30</button>
+                            onclick="booking('6:00')" {% if '6:00' in bookings %}disabled {% endif %}>6:00 - 6:30</button>
                         <button
                             style="background-color: {% if '6:30' in bookings %}#e46e78{% else %}#017e84{% endif %};"
-                            onclick="booking('6:30')">6:30 - 7:00</button>
+                            onclick="booking('6:30')" {% if '6:30' in bookings %}disabled {% endif %}>6:30 - 7:00</button>
                     </div>
                 </div>
                 {% endif %}

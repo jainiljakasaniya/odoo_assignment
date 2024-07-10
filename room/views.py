@@ -82,20 +82,19 @@ def search_booking(request, filter, token):
     else:
         return render(request, "login.html")
 
-def day_select(request,day,selected_room,token):
+def day_select(request, day, selected_room, token):
     if is_valid(token):
         rooms = Rooms.objects.all()
         # bookings = []
         # for room in rooms:
         #     booking_indi = Booking.objects.filter(room_id=room.id).all()
         #     bookings.extend(booking_indi)
-        bookings = Booking.objects.filter(room_id=int(selected_room)+1,date=day)
+        bookings = Booking.objects.filter(room_id=int(selected_room)+1, date=day)
         # print(bookings[])
         bookings_list = [booking.start_time for booking in bookings]
         # print(bookings_list)
-        context = {"rooms": rooms, "bookings": bookings_list, "token": token,"selected_room":int(selected_room),"day":day}
+        context = {"rooms": rooms, "bookings": bookings_list, "token": token, "selected_room": int(selected_room), "day":day}
         # print(context)
         return render(request, "index.html", context=context)
     else:
         return render(request, "login.html")
-## hmo@odoo.com
